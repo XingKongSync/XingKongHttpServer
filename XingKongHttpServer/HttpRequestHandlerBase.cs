@@ -11,6 +11,9 @@ namespace XingKongHttpServer
     {
         private string path;
 
+        /// <summary>
+        /// 路由路径
+        /// </summary>
         public string Path
         {
             get
@@ -28,8 +31,18 @@ namespace XingKongHttpServer
             }
         }
 
+        /// <summary>
+        /// 请求处理函数
+        /// </summary>
+        /// <param name="request"></param>
+        /// <param name="response"></param>
         public abstract void Handler(HttpListenerRequest request, HttpListenerResponse response);
 
+        /// <summary>
+        /// 返回文本数据
+        /// </summary>
+        /// <param name="response"></param>
+        /// <param name="text"></param>
         protected void Text(HttpListenerResponse response, string text)
         {
             byte[] buffer = Encoding.UTF8.GetBytes(text);
@@ -40,6 +53,11 @@ namespace XingKongHttpServer
             output.Write(buffer, 0, buffer.Length);
         }
 
+        /// <summary>
+        /// 返回Json数据
+        /// </summary>
+        /// <param name="response"></param>
+        /// <param name="json"></param>
         protected void Json(HttpListenerResponse response, string json)
         {
             byte[] buffer = Encoding.UTF8.GetBytes(json);
@@ -50,6 +68,11 @@ namespace XingKongHttpServer
             output.Write(buffer, 0, buffer.Length);
         }
 
+        /// <summary>
+        /// 返回Html数据
+        /// </summary>
+        /// <param name="response"></param>
+        /// <param name="html"></param>
         protected void Html(HttpListenerResponse response, string html)
         {
             byte[] buffer = Encoding.UTF8.GetBytes(html);
