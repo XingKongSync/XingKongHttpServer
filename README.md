@@ -65,7 +65,7 @@ namespace Demo
 
 至此，一个最简单的Http服务器已经搭建完成，编译并运行该程序，在浏览器中访问 http://localhost:8080 即可看到效果
 
-OK, everthing is done, you can run the program and type "http://localhost:8080" on your browser, see what will happened.
+OK, everthing is done, you can run the program and type "http://localhost:8080" on your browser, see what will happen.
 
 ### Other
 
