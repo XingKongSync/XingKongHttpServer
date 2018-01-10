@@ -67,6 +67,8 @@ namespace Demo
 
 OK, everthing is done, you can run the program and type "http://localhost:8080" on your browser, see what will happened.
 
+### Other
+
 另外，推荐将所有的请求处理器放入某个命名空间下，例如：“Demo.Controller”，然后在主程序中采用如下写法，即可自动加载该命名空间下的全部请求处理器
 
 By the way, I recommand to put all of your request handlers in a namespace such as "Demo.Controller", then you can write your code like this, the HttpServer will load all request handler autoly.
