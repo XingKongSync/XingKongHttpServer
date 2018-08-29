@@ -39,6 +39,21 @@ namespace XingKongHttpServer
         public abstract void Handler(HttpListenerRequest request, HttpListenerResponse response);
 
         /// <summary>
+        /// 返回HTTP数据
+        /// </summary>
+        /// <param name="contentType">默认text/html</param>
+        /// <param name="encoding">默认UTF-8</param>
+        /// <param name="data"></param>
+        protected void CreateResponse(HttpListenerResponse response, byte[] data, string contentType = "text/html", Encoding encoding = null)
+        {
+            response.ContentType = contentType;
+            response.ContentEncoding = encoding ?? Encoding.UTF8;
+            response.ContentLength64 = data.Length;
+            System.IO.Stream output = response.OutputStream;
+            output.Write(data, 0, data.Length);
+        }
+
+        /// <summary>
         /// 返回文本数据
         /// </summary>
         /// <param name="response"></param>
@@ -46,11 +61,7 @@ namespace XingKongHttpServer
         protected void Text(HttpListenerResponse response, string text)
         {
             byte[] buffer = Encoding.UTF8.GetBytes(text);
-            response.ContentType = "text/plain";
-            response.ContentEncoding = Encoding.UTF8;
-            response.ContentLength64 = buffer.Length;
-            System.IO.Stream output = response.OutputStream;
-            output.Write(buffer, 0, buffer.Length);
+            CreateResponse(response, buffer, "text/plain");
         }
 
         /// <summary>
@@ -61,11 +72,7 @@ namespace XingKongHttpServer
         protected void Json(HttpListenerResponse response, string json)
         {
             byte[] buffer = Encoding.UTF8.GetBytes(json);
-            response.ContentType = "application/json";
-            response.ContentEncoding = Encoding.UTF8;
-            response.ContentLength64 = buffer.Length;
-            System.IO.Stream output = response.OutputStream;
-            output.Write(buffer, 0, buffer.Length);
+            CreateResponse(response, buffer, "application/json");
         }
 
         /// <summary>
@@ -76,11 +83,7 @@ namespace XingKongHttpServer
         protected void Html(HttpListenerResponse response, string html)
         {
             byte[] buffer = Encoding.UTF8.GetBytes(html);
-            response.ContentType = "text/html";
-            response.ContentEncoding = Encoding.UTF8;
-            response.ContentLength64 = buffer.Length;
-            System.IO.Stream output = response.OutputStream;
-            output.Write(buffer, 0, buffer.Length);
+            CreateResponse(response, buffer, "text/html");
         }
     }
 }
